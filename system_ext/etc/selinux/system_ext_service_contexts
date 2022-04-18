@@ -1,0 +1,36 @@
+#line 1 "device/mediatek/sepolicy/plat_private/service_contexts"
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
+# System Server Services
+
+# Other Services
+NvRAMAgent                              u:object_r:nvram_agent_service:s0
+memory_dumper                           u:object_r:mediaserver_service:s0
+imsa                                    u:object_r:radio_service:s0
+mwis                                    u:object_r:radio_service:s0
+mtkIms                                  u:object_r:radio_service:s0
+wfo                                     u:object_r:radio_service:s0
+GbaService                              u:object_r:radio_service:s0
+media.VTS                               u:object_r:vtservice_service:s0
+media.VTS.HiDL                          u:object_r:vtservice_hidl_service:s0
+#line 1 "device/evolution/sepolicy/common/private/service_contexts"
+adbroot_service                           u:object_r:adbroot_service:s0
+lineageaudio                              u:object_r:lineage_audio_service:s0
+lineagehardware                           u:object_r:lineage_hardware_service:s0
+lineageperformance                        u:object_r:lineage_performance_service:s0
+lineagestyle                              u:object_r:lineage_style_service:s0
+lineagetrust                              u:object_r:lineage_trust_service:s0
+lineageweather                            u:object_r:lineage_weather_service:s0
+profile                                   u:object_r:lineage_profile_service:s0
+pocket                                    u:object_r:pocket_service:s0
+
+# Long screenshot
+longshot                                  u:object_r:longshot_service:s0
+
+# App Lock
+app_lock                                  u:object_r:app_lock_service:s0
+
+# DC Dimming
+dc_dim_service		                  u:object_r:dc_dimming_service:s0

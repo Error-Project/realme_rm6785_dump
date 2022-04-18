@@ -1,0 +1,29 @@
+####################################
+# from generate-common-build-props
+# These properties identify this partition image.
+####################################
+ro.product.odm.brand=realme
+ro.product.odm.device=RM6785
+ro.product.odm.manufacturer=realme
+ro.product.odm.model=RM6785
+ro.product.odm.name=evolution_RM6785
+ro.odm.product.cpu.abilist=arm64-v8a,armeabi-v7a,armeabi
+ro.odm.product.cpu.abilist32=armeabi-v7a,armeabi
+ro.odm.product.cpu.abilist64=arm64-v8a
+ro.odm.build.date=Mon Apr 18 18:05:24 UTC 2022
+ro.odm.build.date.utc=1650305124
+ro.odm.build.fingerprint=realme/RMX2001/RMX2001L1:10/QP1A.190711.020/1594211000:user/release-keys
+ro.odm.build.id=SP2A.220405.004
+ro.odm.build.tags=release-keys
+ro.odm.build.type=userdebug
+ro.odm.build.version.incremental=310
+ro.odm.build.version.release=12
+ro.odm.build.version.release_or_codename=12
+ro.odm.build.version.sdk=32
+####################################
+# from variable ADDITIONAL_ODM_PROPERTIES
+####################################
+####################################
+# from variable PRODUCT_ODM_PROPERTIES
+####################################
+# end of file

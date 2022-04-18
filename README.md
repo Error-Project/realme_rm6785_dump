@@ -1,0 +1,14 @@
+# evolution_RM6785-userdebug 12 SP2A.220405.004 310 release-keys
+- manufacturer: 
+- platform: mt6785
+- codename: RM6785
+- flavor: evolution_RM6785-userdebug
+- release: 12
+- id: SP2A.220405.004
+- incremental: 310
+- tags: release-keys
+- fingerprint: realme/RMX2001/RMX2001L1:10/QP1A.190711.020/1594211000:user/release-keys
+- is_ab: false
+- brand: realme
+- branch: evolution_RM6785-userdebug-12-SP2A.220405.004-310-release-keys
+- repo: realme_rm6785_dump

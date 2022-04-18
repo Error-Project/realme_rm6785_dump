@@ -1,0 +1,81 @@
+on fs
+    mount_all /vendor/etc/fstab.mt6785 --early
+    mount_all /vendor/etc/fstab.mt6785 --late
+
+on post-fs
+    # Unmount the overridden fstab because the SELinux label is incorrect
+    # and some MTK daemons can crash because of that
+    # (at post-fs, the fstab has already been used to mount the partitions,
+    #  so it is fine to just revert back)
+    umount /vendor/etc/fstab.mt6785
+
+on post-fs-data
+    # VideoCodec
+    chmod 0666 /dev/video0
+    chmod 0666 /dev/video1
+
+    # Services
+    setprop init.svc.console stopped
+
+on property:sys.boot_completed=1
+    # ZRAM
+    swapon_all /vendor/etc/fstab.mt6785
+
+    # Disable edge limit control interface
+    write /proc/touchpanel/oplus_tp_limit_enable 0
+
+    # Enable oppo touchpanel direction
+    write /proc/touchpanel/oplus_tp_direction 1
+
+    # Update fastcharge firmware
+    write /proc/fastchg_fw_update 1
+
+    # OTG
+    write /sys/class/power_supply/usb/otg_switch 1
+
+on property:persist.vendor.radio.port_index=""
+    setprop sys.usb.config adb
+
+service vendor.media.omx /vendor/bin/hw/android.hardware.media.omx@1.0-service
+    override
+    class main
+    user mediacodec
+    group camera drmrpc mediadrm system
+    ioprio rt 4
+    writepid /dev/cpuset/foreground/tasks
+
+on property:persist.sys.dt2w=0
+    write /proc/touchpanel/double_tap_enable 0
+
+on property:persist.sys.dt2w=1
+    write /proc/touchpanel/double_tap_enable 1
+
+on property:ro.boot.product.hardware.sku=nfc
+    start secure_element_hal_service
+    start vendor.nfc_hal_service
+
+# Performance profiles
+on property:perf_profile=1
+    exec - root -- /system/bin/perf_profile.sh 1
+
+on property:perf_profile=0
+    exec - root -- /system/bin/perf_profile.sh 0
+
+on property:sys.boot_completed=1
+    chown root root /sys/module/ged/parameters/gx_force_cpu_boost
+    chown root root /proc/cpufreq/cpufreq_power_mode
+    chown root root /proc/cpufreq/cpufreq_cci_mode
+
+service vendor.nfc_hal_service /vendor/bin/hw/android.hardware.nfc@1.2-service
+    override
+    disabled
+    class hal
+    user nfc
+    group nfc
+
+service vendor.charger /system/bin/chargeonlymode
+    class charger
+    user system
+    group system graphics input
+    capabilities SYS_BOOT
+    seclabel u:r:charger:s0

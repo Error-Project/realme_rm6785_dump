@@ -1,0 +1,4 @@
+#line 1 "device/mediatek/sepolicy/non_plat/service_contexts"
+PPLAgent                                u:object_r:ppl_agent_service:s0
+#line 1 "device/evolution/sepolicy/common/dynamic/service_contexts"
+vendor.lineage.power.IPower/default                                u:object_r:hal_power_service:s0
